@@ -1,18 +1,21 @@
 <script>
 
-import store from './data/store.js';
-import axios from 'axios';
+import store from '../data/store.js';
+import SingleMovie from './SingleMovie.vue';
+
 
 
 export default {
-
+    name: "ListMovie",
     components: {
+        SingleMovie,
 
     },
     data() {
 
         return {
-            store
+            store,
+            urlImage: "https://image.tmdb.org/t/p/w500",
         }
     },
 
@@ -32,8 +35,16 @@ export default {
 </script>
 
 <template>
-    
+    <div class="cardContainer">
+        <SingleMovie v-for="film in this.store.movie" :select="film" :url="urlImage" />
+    </div>
 
 </template>
 
-<style scoped></style>
+<style scoped>
+.cardContainer {
+    display: flex;
+    flex-wrap: wrap;
+
+}
+</style>

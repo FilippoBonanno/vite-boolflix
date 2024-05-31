@@ -2,48 +2,36 @@
 
 import store from './data/store.js';
 import axios from 'axios';
-import SingleMovie from './components/SingleMovie.vue';
+import ListMovie from './components/ListMovie.vue';
 
 
 
 export default {
 
     components: {
-        SingleMovie
+        ListMovie
 
     },
     data() {
 
         return {
             store,
-            urlImage: "https://image.tmdb.org/t/p/w500"
+            urlImage: "https://image.tmdb.org/t/p/w500",
+            apiMovieUrl: "https://api.themoviedb.org/3/search/movie?api_key=cd9bb08e609470850f56a739b3e6641f&query=",
+            userInput: ""
+
         }
     },
 
     methods: {
-        // FACCIAMO LA CHIAMATA AXIOS DELL'API E METTIAMOLO IN UNA FUNZIONE
-        getMovie() {
-            const options = {
-                method: 'GET',
-                url: 'https://api.themoviedb.org/3/search/movie',
-                params: { query: 'dragon', include_adult: 'false', language: 'en-US', page: '1' },
-                headers: {
-                    accept: 'application/json',
-                    Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJjZDliYjA4ZTYwOTQ3MDg1MGY1NmE3MzliM2U2NjQxZiIsInN1YiI6IjY2NTdhNGUwYWU3N2NlNDI2MWM0NjYxMSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.xHruwl1ntwpw8uLvgauW9vbT13VI6NNCOmSgs5mYrWY'
-                }
-            };
+        searchButton() {
+            axios.get(this.apiMovieUrl + this.userInput).then(result => {
 
-            axios
-                .request(options)
-                .then( (response) => {
-                    // INSERIAMO L'API DULLO STORE
-                    this.store.movie = response.data.results
-                    console.log(this.urlImage + store.movie[0].backdrop_path);
-                })
-                .catch(function (error) {
-                    console.error(error);
-                });
+                this.store.movie = result.data.results
+                console.log("APP MONTATA")
+            });
         }
+
 
 
     },
@@ -55,22 +43,23 @@ export default {
     },
 
     mounted() {
-        this.getMovie();
+
     }
+
 }
 </script>
 
 <template>
     <h1>NETFLIX</h1>
     <div class="container">
-        <p>container</p>
-    </div>
+        <div class="input-group mb-3">
+            <input v-model="userInput" type="text" class="form-control" placeholder="Cerca Film o SerieTV" aria-label="Recipient's username"
+                aria-describedby="button-addon2">
+            <button @click="searchButton" class="btn btn-outline-secondary" type="button" id="button-addon2">Cerca</button>
+        </div>
 
-    <div>
-       <img :src="this.urlImage + store.movie[0].backdrop_path" >
-
+        <ListMovie />
     </div>
-    <SingleMovie/>
 
 </template>
 
