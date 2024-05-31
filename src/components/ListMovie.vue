@@ -15,7 +15,7 @@ export default {
 
         return {
             store,
-            urlImage: "https://image.tmdb.org/t/p/w500",
+            urlImage: "https://image.tmdb.org/t/p/w780",
         }
     },
 

@@ -7,7 +7,7 @@ export default {
     props: {
         select: Object,
         url: String
-
+        
 
     },
     data() {
@@ -34,8 +34,8 @@ export default {
 
 <template>
     <div class="singleCard">
-        <img :src="url + select.backdrop_path">
-        <h2>{{ select.title }}</h2>
+        <img :src="url + select.poster_path">
+        <h2>{{ select.title }} {{ select.name }}</h2>
         <p class="language">{{ select.original_language }}</p>
         <p class="vote">{{ select.vote_average }}</p>
     </div>
@@ -45,8 +45,8 @@ export default {
 <style scoped>
 .singleCard {
     padding: 1rem;
-    width: 10rem;
-    background-color: chocolate;
+    width: 15rem;
+    background-color: rgba(30, 153, 210, 0.116);
     border: 1px solid black;
     font-size: 12px;
 }
@@ -64,6 +64,6 @@ color: red;
 }
 
 h2 {
-    width: 100%;
+    font-size: 100%;
 }
 </style>
