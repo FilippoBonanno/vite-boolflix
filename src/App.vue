@@ -37,6 +37,7 @@ export default {
                 this.store.movie = result.data.results
                 console.log("APP MONTATA")
             });
+            this.userInput = ""
         }
 
 
