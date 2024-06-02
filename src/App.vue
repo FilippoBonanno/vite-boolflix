@@ -3,13 +3,15 @@
 import store from './data/store.js';
 import axios from 'axios';
 import ListMovie from './components/ListMovie.vue';
+import HeaderApp from './components/HeaderApp.vue';
 
 
 
 export default {
 
     components: {
-        ListMovie
+        ListMovie,
+        HeaderApp,
 
     },
     data() {
@@ -58,10 +60,10 @@ export default {
 </script>
 
 <template>
-    <h1>NETFLIX</h1>
+    <HeaderApp />
     <div class="container">
         <div class="input-group mb-3">
-            <input v-model="userInput" type="text" class="form-control" placeholder="Cerca Film o SerieTV"
+            <input @keyup.enter="searchButton" v-model="userInput" type="text" class="form-control" placeholder="Cerca Film o SerieTV"
                 aria-label="Recipient's username" aria-describedby="button-addon2">
             <button @click="searchButton" class="btn btn-outline-secondary" type="button"
                 id="button-addon2">Cerca</button>
@@ -72,4 +74,5 @@ export default {
 
 </template>
 
-<style scoped></style>
+<style scoped>
+</style>

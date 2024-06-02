@@ -25,14 +25,14 @@ export default {
                 return this.it
             } else {
                 return this.en
-                
+
             }
         },
 
         getFlag(language) {
             if (language == "it") {
                 return "https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Flag_of_Italy.svg/1280px-Flag_of_Italy.svg.png"
-                
+
             } else {
 
                 return "https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Flag_of_the_United_Kingdom_%283-5%29.svg/1920px-Flag_of_the_United_Kingdom_%283-5%29.svg.png"
@@ -41,15 +41,15 @@ export default {
 
         getVote(vote) {
             return (Math.round(vote / 2));
-        }, 
+        },
 
-        getStars (vote, condiction) {
+        getStars(vote, condiction) {
 
             let newVote = this.getVote(vote)
-            let classe= 'fa-regular fa-star';
+            let classe = 'fa-regular fa-star';
             if (newVote >= condiction) {
                 classe = 'fa fa-star';
-            } 
+            }
 
             return classe;
         },
@@ -73,15 +73,16 @@ export default {
         <img v-if="select.poster_path" :src="url + select.poster_path">
         <img v-else :src="imgPlaceholder">
         <h2>{{ select.title }} {{ select.name }}</h2>
-        <img class="flag" :src="getFlag(select.original_language)">
-        <p class="vote">{{getVote(select.vote_average)}}</p>
-        <span class="star"><i :class="getStars(select.vote_average, 1)"></i></span>
-        <span class="star"><i :class="getStars(select.vote_average, 2)"></i></span>
-        <span class="star"><i :class="getStars(select.vote_average, 3)"></i></span>
-        <span class="star"><i :class="getStars(select.vote_average, 4)"></i></span>
-        <span class="star"><i :class="getStars(select.vote_average, 5)"></i></span>
-        
-        
+        <div>
+            <img class="flag" :src="getFlag(select.original_language)">
+            <p class="vote">{{ getVote(select.vote_average) }}</p>
+            <span class="star"><i :class="getStars(select.vote_average, 1)"></i></span>
+            <span class="star"><i :class="getStars(select.vote_average, 2)"></i></span>
+            <span class="star"><i :class="getStars(select.vote_average, 3)"></i></span>
+            <span class="star"><i :class="getStars(select.vote_average, 4)"></i></span>
+            <span class="star"><i :class="getStars(select.vote_average, 5)"></i></span>
+        </div>
+
     </div>
 
 </template>
@@ -121,5 +122,13 @@ h2 {
 
 .star {
     color: gold;
+}
+
+.hidden {
+    display: none;
+}
+
+.singleCard:hover {
+    cursor: pointer;
 }
 </style>

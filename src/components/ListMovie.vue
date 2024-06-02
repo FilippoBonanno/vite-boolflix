@@ -44,6 +44,7 @@ export default {
 <style scoped>
 .cardContainer {
     display: flex;
+    justify-content: center;
     flex-wrap: wrap;
 
 }
