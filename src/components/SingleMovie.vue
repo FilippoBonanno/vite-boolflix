@@ -72,16 +72,14 @@ export default {
     <div class="singleCard">
         <img v-if="select.poster_path" :src="url + select.poster_path">
         <img v-else :src="imgPlaceholder">
-        <h2>{{ select.title }} {{ select.name }}</h2>
+        <h2>{{ select.title }}{{ select.name }}</h2>
         <div>
             <img class="flag" :src="getFlag(select.original_language)">
-            <p class="vote">{{ getVote(select.vote_average) }}</p>
-            <span class="star"><i :class="getStars(select.vote_average, 1)"></i></span>
-            <span class="star"><i :class="getStars(select.vote_average, 2)"></i></span>
-            <span class="star"><i :class="getStars(select.vote_average, 3)"></i></span>
-            <span class="star"><i :class="getStars(select.vote_average, 4)"></i></span>
-            <span class="star"><i :class="getStars(select.vote_average, 5)"></i></span>
+            <p class="vote">Valutazione: {{ getVote(select.vote_average) }}</p>
+            <span v-for="n in 5" class="star"><i :class="getStars(select.vote_average, n)"></i></span>
+         
         </div>
+        
 
     </div>
 

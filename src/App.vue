@@ -28,15 +28,16 @@ export default {
 
     methods: {
         searchButton() {
+            this.store.movie = []
             axios.get(this.apiMovieUrl + this.userInput).then(result => {
 
-                this.store.movie = result.data.results
+                this.store.movie = [...this.store.movie, ...result.data.results]
                 console.log("APP MONTATA")
             });
 
             axios.get(this.apiSeriesTV + this.userInput).then(result => {
 
-                this.store.movie = result.data.results
+                this.store.movie = [...this.store.movie, ...result.data.results]
                 console.log("APP MONTATA")
             });
             this.userInput = ""
